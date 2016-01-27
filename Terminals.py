@@ -24,11 +24,14 @@ class Terminals():
     self.dt_handle = GetDateTime.GetDateTime()
 
     terminals_thread = threading.Thread(target=self.open_terminals, args=())
+    terminals_thread.daemon = True
     terminals_thread.start()
     # Open the terminals
 
     # Open browser
-    #self.open_browser()
+    browser_thread = threading.Thread(target=self.open_browser, args=())
+    browser_thread.daemon = True
+    browser_thread.start()
 
     # Open RSS
     self.rss_feeds()
@@ -38,6 +41,7 @@ class Terminals():
 
     # xchat
     xchat_thread = threading.Thread(target=self.xchat, args=())
+    xchat_thread.daemon = True
     xchat_thread.start()
     
 
